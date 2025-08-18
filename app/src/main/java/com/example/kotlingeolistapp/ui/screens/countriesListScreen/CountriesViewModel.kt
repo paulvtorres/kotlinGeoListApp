@@ -14,7 +14,6 @@ import com.example.kotlingeolistapp.domain.util.ConnectivityObserver
 import com.example.kotlingeolistapp.domain.util.Resource
 import com.example.kotlingeolistapp.ui.state.CountriesUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
