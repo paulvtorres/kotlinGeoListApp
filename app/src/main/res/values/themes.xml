@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.KotlinGeoListApp" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.KotlinGeoListApp.Splash" parent="Theme.SplashScreen">
+        <!-- Ícono de la app -->
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <!-- Color de fondo -->
+        <item name="windowSplashScreenBackground">@color/white</item>
+    </style>
+</resources>
