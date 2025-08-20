@@ -27,7 +27,6 @@ class CountryRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getCountryDetail(name: String): CountryDetail {
-        delay(2000)
         val dto = api.getCountryByName(name).first()
         return dto.toDetailDomain()
     }
