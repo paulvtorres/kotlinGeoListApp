@@ -14,8 +14,8 @@ import com.example.kotlingeolistapp.domain.util.ConnectivityObserver
 import com.example.kotlingeolistapp.domain.util.Resource
 import com.example.kotlingeolistapp.ui.state.CountriesUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -57,7 +57,8 @@ class CountriesViewModel @Inject constructor(
 
     private fun loadAllCountries() {
         viewModelScope.launch {
-            getCountriesUseCase().collect { result ->
+            getCountriesUseCase().flowOn(Dispatchers.IO)
+                .collect { result ->
                 when (result) {
                     is Resource.Loading -> _state.value = _state.value.copy(isLoading = true)
 
@@ -91,7 +92,8 @@ class CountriesViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-            searchCountriesUseCase(search).collect { result ->
+            searchCountriesUseCase(search).flowOn(Dispatchers.IO)
+                .collect { result ->
                 when (result) {
                     is Resource.Loading -> _state.value = _state.value.copy(isLoading = true)
 
@@ -131,7 +133,8 @@ class CountriesViewModel @Inject constructor(
 
     private fun observeFavorites() {
         viewModelScope.launch {
-            getFavoritesUseCase().collect { favEntities ->
+            getFavoritesUseCase().flowOn(Dispatchers.IO)
+                .collect { favEntities ->
                 favoritesCache = favEntities.map { it.code }
                 refreshCountriesAndFavorites()
             }
