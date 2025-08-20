@@ -21,12 +21,15 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        buildTypes {
+            release {
+                isMinifyEnabled = false       
+                isShrinkResources = false
+            }
+            debug {
+                isMinifyEnabled = false
+                isShrinkResources = false
+            }
         }
     }
     compileOptions {
@@ -38,6 +41,18 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+    packaging {
+        resources {
+            excludes += setOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt"
+            )
+        }
     }
 }
 
@@ -86,5 +101,15 @@ dependencies {
 
     // Skeleton
     implementation (libs.compose.shimmer)
+
+    // Para tests instrumentados
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Coroutines testing
+    androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
+
+    // MockK para Android
+    androidTestImplementation ("io.mockk:mockk-android:1.13.11")
 
 }

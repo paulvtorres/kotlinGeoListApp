@@ -8,11 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import com.example.kotlingeolistapp.ui.navigation.AppNavGraph
 import com.example.kotlingeolistapp.ui.theme.KotlinGeoListAppTheme
+import com.google.android.gms.ads.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        MobileAds.initialize(this) {}
         installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {

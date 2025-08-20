@@ -6,6 +6,7 @@ import com.example.kotlingeolistapp.domain.remote.mappers.toDomain
 import com.example.kotlingeolistapp.domain.remote.model.Country
 import com.example.kotlingeolistapp.domain.remote.model.CountryDetail
 import com.example.kotlingeolistapp.domain.remote.repository.CountryRepository
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -26,6 +27,7 @@ class CountryRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getCountryDetail(name: String): CountryDetail {
+        delay(2000)
         val dto = api.getCountryByName(name).first()
         return dto.toDetailDomain()
     }

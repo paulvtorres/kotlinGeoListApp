@@ -20,6 +20,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
+import androidx.lifecycle.compose.*
 import com.example.kotlingeolistapp.ui.screens.countriesListScreen.components.CountryList
 import com.example.kotlingeolistapp.ui.screens.countriesListScreen.components.SearchBarWithMic
 import com.example.kotlingeolistapp.ui.screens.countriesListScreen.components.UiOverlays
@@ -36,7 +37,7 @@ fun CountriesListScreen(
     viewModel: CountriesViewModel = hiltViewModel(),
     onCountryClick: (String) -> Unit
 ) {
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
     var searchText by remember { mutableStateOf("") }
     var selectedTab by rememberSaveable { mutableIntStateOf(0) }
 
